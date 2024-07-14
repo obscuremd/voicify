@@ -14,8 +14,13 @@
     "@emotion/styled": "^11.11.5",
     "@heroicons/react": "^2.1.5",
     "@types/dom-speech-recognition": "^0.0.4",
+    "framer-motion": "^11.3.2",
+    "iconoir-react": "^7.7.0",
+    "ldrs": "^1.0.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-router-dom": "^6.24.1",
+    "recoil": "^0.7.7",
     "use-react-countries": "^2.0.1"
   },
   "devDependencies": {
