@@ -1,14 +1,26 @@
 import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+
+
+
+const key = import.meta.env.VITE_FIREBASE_KEY;
+const domain = import.meta.env.VITE_FIREBASE_DOMAIN;
+const id = import.meta.env.VITE_FIREBASE_ID;
+const bucket = import.meta.env.VITE_FIREBASE_BUCKET;
+const senderId = import.meta.env.VITE_FIREBASE_SENDERID;
+const appId = import.meta.env.VITE_FIREBASE_APPID;
+const measurementId = import.meta.env.VITE_FIREBASE_MEASUREMENTID;
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBbkMeykuME2iWY3XbXLtPDM2Y3rCJO7Cg",
-  authDomain: "voicify-cb6d8.firebaseapp.com",
-  projectId: "voicify-cb6d8",
-  storageBucket: "voicify-cb6d8.appspot.com",
-  messagingSenderId: "179480580323",
-  appId: "1:179480580323:web:2478f7ba10cc300623f5d6",
-  measurementId: "G-R2FMCEV1LF"
+    apiKey: key,
+    authDomain: domain,
+    projectId: id,
+    storageBucket: bucket,
+    messagingSenderId: senderId,
+    appId: appId,
+    measurementId: measurementId
 };
 
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
+export const analytics = getAnalytics(app);
