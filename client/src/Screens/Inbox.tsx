@@ -1,17 +1,19 @@
-import React, { useEffect, useState }  from 'react'
+import { useEffect, useState }  from 'react'
 import { Buttons } from '../Components/ui/Buttons'
 import { MoreHoriz } from 'iconoir-react'
 import axios from 'axios'
 import { Url } from '../Exports/Export'
+import { useRecoilValue } from 'recoil'
+import { UserEmail } from '../states/Record';
 
 const Inbox = () => {
   const [data, setData] = useState([])
+  const user = useRecoilValue(UserEmail)
 
   useEffect(() => {
     const FetchMails =async () =>{
-      const res = await axios.get(`${Url}/user/md.erhenede@gmail.com`)
+      const res = await axios.get(`${Url}/user/${user}`)
       setData(res.data)
-      console.log(res.data)
     }
 
     FetchMails()
@@ -35,7 +37,9 @@ const Inbox = () => {
               <th ></th>
             </tr>
           </thead>
-          <tbody>
+          {data.length === 0
+          ?<p>no posts yet</p>
+          :  <tbody>
             {
               data.map(({ receiverEmail, subject, createdAt}, index)=>(
               <tr key={index} className='gradient-border-bottom text-nowrap'>
@@ -48,7 +52,7 @@ const Inbox = () => {
               ))
             }
 
-          </tbody>
+          </tbody>}
           
         </table>
       </div>

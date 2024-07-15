@@ -4,8 +4,14 @@ import { Menu, User, Xmark } from 'iconoir-react'
 import { AnimatePresence, motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { isMobile } from '../Exports/Export';
+import { getAuth, signOut } from "firebase/auth";
 
 const NavBar = () => {
+
+  const auth = getAuth();
+  const logout =()=>{
+    signOut(auth);
+  }
 
   const [navBar, setNavBar] = useState(false)
 
@@ -50,8 +56,8 @@ const NavBar = () => {
               <motion.li whileHover={{scale:1.1}}>Resources</motion.li>
             </ol>
             <div className='flex gap-[30px]'>
-              <Buttons text='Hi, Daniel' icon={<User/>}/>
-              <Buttons text='Get Started' bg/>
+              <Buttons text='Welcome' icon={<User/>} func={logout}/>
+              <Buttons text='Get Started' bg to='/inbox'/>
             </div>
           </>
       }

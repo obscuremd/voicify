@@ -1,9 +1,13 @@
-import React, {useState} from 'react'
+import {useState} from 'react'
 import { Buttons } from '../Components/ui/Buttons'
 import axios from 'axios'
 import { Url } from '../Exports/Export'
+import { useRecoilValue } from 'recoil'
+import { UserEmail } from '../states/Record';
 
 const Compose = () => {
+
+  const user = useRecoilValue(UserEmail)
 
   const [receiverEmail , setReceiverEmail] = useState('')
   const [subject , setSubject] = useState('')
@@ -14,7 +18,7 @@ const Compose = () => {
       window.alert("fields must not be empty")
     }else{
       try{
-        await axios.post(`${Url}/md.erhenede@gmail.com`,{receiverEmail, subject, text})
+        await axios.post(`${Url}/${user}`,{receiverEmail, subject, text})
         window.alert('email sent successfully')
       }catch(error){
         window.alert(error)

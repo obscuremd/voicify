@@ -4,6 +4,8 @@ import App from './App.tsx'
 import './index.css'
 import { RecoilRoot } from 'recoil'
 import { ClerkProvider } from '@clerk/clerk-react'
+import { app } from './hooks/firebaseConfig.tsx'
+app
 
 // Import your publishable key
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY

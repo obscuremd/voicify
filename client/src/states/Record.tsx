@@ -14,3 +14,10 @@ export const RecorderVisible = atom({
     key: "recorderVisible",
     default: false
 })
+
+
+// email
+export const UserEmail = atom({
+    key: "userEmail",
+    default: ''
+})
