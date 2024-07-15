@@ -25,7 +25,7 @@ function App() {
       setLoading(false);
     });
 
-    // Cleanup subscription on unmount
+    // Cleanup subscription on unmounts
     return () => unsubscribe();
   }, []);
   useEffect(() =>{
