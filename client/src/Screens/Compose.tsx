@@ -22,6 +22,7 @@ const Compose = () => {
         window.alert('email sent successfully')
       }catch(error){
         window.alert(error)
+        console.log(error)
       }
     }
   }

@@ -14,6 +14,8 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [userEmail, setUserEmail] = useRecoilState(UserEmail);
 
+ 
+
   useEffect(() => {
     const auth = getAuth();
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -28,14 +30,13 @@ function App() {
     // Cleanup subscription on unmounts
     return () => unsubscribe();
   }, []);
-  useEffect(() =>{
-    if(!auth.currentUser?.email){
-      return
-    }else{
-      setUserEmail(auth.currentUser?.email);
-      console.log(userEmail)
-    }
-  },[])
+
+  if(!auth.currentUser?.email){
+    console.log("pp ")
+  }else{
+    setUserEmail(auth.currentUser?.email);
+    userEmail
+  }
 
   if (loading) {
     return <div>Loading...</div>;
