@@ -29,6 +29,21 @@ input:focus{
   border: 2px solid var(--black-Light, #E8E8EA);
 }
 
+.remove-input {
+  background: none;
+  outline: none;
+  padding: 10px 30px;
+  border: none;
+  border-radius: 0; /* Remove the border radius if not needed */
+  transition: 0.3s ease-in-out;
+  position: relative;
+}
+.remove-input:focus {
+  border: 0px solid transparent;
+}
+
+
+
 .line-height-global {
     line-height: 140%; /* 22.4px */
 }
@@ -76,4 +91,13 @@ h2{@apply text-h2}
 h3{@apply text-h3}
 h4{@apply text-h4}
 h5{@apply text-h5}
+
+.green_gradient_text{
+  padding: 10px;
+  background-image: linear-gradient(95deg, #1F614D 15.03%, #34A181 61.01%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: 'transparent';
+}
         

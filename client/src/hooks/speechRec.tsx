@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 
 interface WebkitSpeechRecognition extends SpeechRecognition {
     continuous: boolean;
@@ -7,7 +7,7 @@ interface WebkitSpeechRecognition extends SpeechRecognition {
 let recognition: WebkitSpeechRecognition | null = null;
 
 if ('webkitSpeechRecognition' in window) {
-    recognition = new webkitSpeechRecognition();
+    recognition = new webkitSpeechRecognition() as WebkitSpeechRecognition;
     recognition.continuous = true;
     recognition.lang = 'en-US';
 }
@@ -19,6 +19,11 @@ export const UseRecognition = () => {
     useEffect(() => {
         if (!recognition) return;
 
+        recognition.onstart = () => {
+            console.log('Recognition started');
+            setIsListening(true);
+        };
+
         recognition.onresult = (e: SpeechRecognitionEvent) => {
             let finalTranscript = '';
             for (let i = 0; i < e.results.length; i++) {
@@ -26,24 +31,38 @@ export const UseRecognition = () => {
             }
             setText(finalTranscript);
             recognition.stop();
-            setIsListening(false);
         };
 
         recognition.onerror = (e: Event) => {
             console.error('Error occurred in recognition: ', e);
             setIsListening(false);
         };
+
+        recognition.onend = () => {
+            console.log('Recognition ended');
+            setIsListening(false);
+        };
+
+        return () => {
+            recognition.onstart = null;
+            recognition.onresult = null;
+            recognition.onerror = null;
+            recognition.onend = null;
+        };
+
     }, []);
 
     const startListening = () => {
-        setText('');
-        setIsListening(true);
-        recognition?.start();
+        if (recognition && !isListening) {
+            recognition.start();
+            setIsListening(true);
+        }
     };
 
     const stopListening = () => {
-        setIsListening(false);
-        recognition?.stop();
+        if (recognition && isListening) {
+            recognition.stop();
+        }
     };
 
     return {

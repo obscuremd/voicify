@@ -1,15 +1,16 @@
 import { useState } from 'react'
-import { isMobile } from '../assets/Shared'
 import {Buttons} from './ui/Buttons'
 import { Menu, User, Xmark } from 'iconoir-react'
 import { AnimatePresence, motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import { isMobile } from '../Exports/Export';
 
 const NavBar = () => {
 
   const [navBar, setNavBar] = useState(false)
 
   return (
-    <nav className='relative w-full md:px-[64px] px-[32px] flex items-center justify-between pt-5 pb-5'>
+    <nav className='relative w-full md:px-[64px] px-[32px] flex items-center justify-between pt-5 pb-16'>
       <h5 className='font-bold text-green-Light_active'>Voicify</h5>
       {isMobile 
         ? <>
@@ -27,8 +28,8 @@ const NavBar = () => {
                     exit={{y:'-20%', opacity:0}}
                     className='absolute w-full z-50 right-0 top-12 bg-black-Darker bg-opacity-50 backdrop-blur-lg flex flex-col items-center py-5 gap-[20px]'>
                     <ol className='w-full flex flex-col text-title2 font-semibold'>
-                      <li className='w-full p-5 gradient-border-bottom'>Home</li>
-                      <li className='w-full p-5 gradient-border-bottom'>Emails</li>
+                      <Link to={'/'} className='w-full p-5 gradient-border-bottom'>Home</Link>
+                      <Link to={'/inbox'} className='w-full p-5 gradient-border-bottom'>Emails</Link>
                       <li className='w-full p-5 gradient-border-bottom'>Customers</li>
                       <li className='w-full p-5 gradient-border-bottom'>Resources</li>
                     </ol>
@@ -43,8 +44,8 @@ const NavBar = () => {
         : <>
             {/* PC NAVBAR */}
             <ol className='flex items-center gap-[50px] text-title2 font-semibold'>
-              <motion.li whileHover={{scale:1.1}}>Home</motion.li>
-              <motion.li whileHover={{scale:1.1}}>Emails</motion.li>
+              <motion.li whileHover={{scale:1.1}}><Link to={'/'}>Home</Link> </motion.li>
+              <motion.li whileHover={{scale:1.1}}><Link to={'/inbox'}>Emails</Link></motion.li>
               <motion.li whileHover={{scale:1.1}}>Customers</motion.li>
               <motion.li whileHover={{scale:1.1}}>Resources</motion.li>
             </ol>

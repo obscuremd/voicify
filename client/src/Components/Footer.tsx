@@ -16,7 +16,7 @@ const Footer = () => {
   )
 
   return (
-    <footer className="gradient-border-top gradient py-16 md:px-32 px-8 gap-10 flex flex-col md:flex-row items-start justify-between">
+    <footer className="gradient-border-top gradient py-16 md:px-32 px-8 gap-10 flex flex-col md:flex-row items-start justify-between mt-16">
       {/* developed */}
       <div className="flex flex-col gap-5">
         <p>Developed by Abdul HardDick</p>

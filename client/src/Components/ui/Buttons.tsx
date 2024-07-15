@@ -9,6 +9,7 @@ interface Props{
   icon?:React.ReactNode
   func?:()=>void
   to?:string
+  square?:boolean
 }
 
 export const Buttons:React.FC<Props> = ({bg, border, text, icon, func, to}) => {
@@ -22,7 +23,7 @@ export const Buttons:React.FC<Props> = ({bg, border, text, icon, func, to}) => {
     <motion.button
         onClick={func}
         whileHover={hover}
-        className={`flex items-center gap-[10px] text-title2 font-semibold py-[10px] ${icon ?'px-[20px]':'px-[30px]'} ${bg &&'bg-pink-Light text-black-Darker'} w-fit ${border && 'border-[1px] border-pink-Light'} rounded-full`}>
+        className={`text-nowrap flex items-center gap-[10px] text-title2 font-semibold py-[10px] ${icon ?'px-[20px]':'px-[30px]'} ${bg &&'bg-pink-Light text-black-Darker'} w-fit ${border && 'border-[1px] border-pink-Light'} rounded-full`}>
           {icon &&
             <div className={`p-[5px] ${bg ? 'bg-black-Darker text-pink-Light' :'bg-pink-Light text-black-Darker'} rounded-full text-caption`}>
               {icon}
@@ -40,7 +41,7 @@ export const Buttons:React.FC<Props> = ({bg, border, text, icon, func, to}) => {
   );
 }
 
-export const CircleIconButtons:React.FC<Props> = ({func, icon, to}) => {
+export const CircleIconButtons:React.FC<Props> = ({func, icon, to, square, text}) => {
 
   const hover ={
       scale:1.2,
@@ -48,14 +49,17 @@ export const CircleIconButtons:React.FC<Props> = ({func, icon, to}) => {
     }
 
   return (
-    <motion.button
-      onClick={func}
-      whileHover={hover}
-      className={`p-[5px] border-[1px] border-pink-Light  text-pink-Light rounded-full text-caption`}>
-        <a href={to}>
-            {icon}
-        </a>
-    </motion.button>
+    <div className='flex flex-col items-center gap-2'>
+      <motion.button
+        onClick={func}
+        whileHover={hover}
+        className={`${square?'px-4 py-2 rounded-lg':'p-[5px] rounded-full'} border-[1px] border-pink-Light  text-pink-Light  text-caption`}>
+          <a href={to}>
+              {icon}
+          </a>
+      </motion.button>
+      {text && <p>{text}</p>}
+    </div>
 
   )
 }
