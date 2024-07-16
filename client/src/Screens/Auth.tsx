@@ -45,14 +45,6 @@ const Auth = () => {
     startListening();
   };
 
-  const doubleClick = (e: React.MouseEvent<HTMLElement>) => {
-    if (e.detail === 2) {
-      recordPassword();
-    } else if (e.detail === 3) {
-      recordEmail();
-    }
-  };
-
   const handleLogin = async () => {
     setLoading(true);
     try {
@@ -77,6 +69,20 @@ const Auth = () => {
     }
   };
 
+  const doubleClick = (e: React.MouseEvent<HTMLElement>) => {
+    const screenHeight = window.innerHeight;
+    const clickY = e.clientY;
+
+    if(e.detail === 2){
+      if (clickY < screenHeight / 2) {
+        handleSignUp();
+      } else {
+        handleLogin();
+      }
+    }else{return}
+
+  };
+
   if (loading) {
     return <Loader />;
   }
@@ -92,6 +98,7 @@ const Auth = () => {
           <p className='text-title2'>Choose one of the options to get started</p>
         </div>
         <input
+          onClick={recordEmail}
           placeholder='Email'
           className='w-full'
           value={email}
@@ -99,6 +106,7 @@ const Auth = () => {
         />
         <div className='flex gap-4'>
           <input
+            onClick={recordPassword}
             placeholder='Password'
             className='w-full'
             type={passwordVisible ? 'text' : 'password'}
