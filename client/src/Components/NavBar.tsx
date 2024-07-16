@@ -40,7 +40,7 @@ const NavBar = () => {
                       <li className='w-full p-5 gradient-border-bottom'>Resources</li>
                     </ol>
                     <div className='flex gap-[10px]'>
-                      <Buttons text='Hi, Daniel' icon={<User/>}/>
+                      <Buttons text='Welcome' icon={<User/>} func={logout}/>
                       <Buttons text='Get Started' bg/>
                     </div>
                   </motion.nav>
